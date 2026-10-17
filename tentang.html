@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  <title>Tentang</title>
+  
+  <style>
+  body {
+    font-family: chewy;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    height: 50px;
+    width: 100%;
+    background: pink;
+  }
+  .profil {
+    height: 35px;
+    width: 35px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-left: 15px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: -250px;
+    background-color: #fce4ec;
+    border-right: 2px solid black;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 20px;
+    font-family: chewy;
+  }
+  .sidebar.buka {
+    left: 0;
+  }
+  .sidebar-header {
+    padding: 10px 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    position: relative;
+  }
+
+  .profil-di-sidebar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 10px;
+  }
+  .sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+  }
+  .sidebar-menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    transition: 0.2s;
+  }
+  .sidebar-menu a:hover {
+    background-color: pink;
+  }
+  .overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.5);
+    display: none;
+  }
+  .overlay.tampil {
+    display: block;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="foto_default.jpg" class="profil" id="tombolProfil">
+  </header>
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-header">
+      <img src="foto_default.jpg" alt="Profil" class="profil-di-sidebar" id="fotoSidebar">
+      <h3 id="namaSidebar">Nama Anda</h3>
+      <a href="javascript:void(0)" class="closebtn" onclick="tutupSidebar()">&times;</a>
+    </div>
+    <div class="sidebar-menu">
+      <a href="beranda.html">Beranda</a>
+      <a href="album.html">Album</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="halamanLogin.html" style="color: red;">Keluar</a>
+    </div>
+  </div>
+  <div id="overlay" class="overlay" onclick="tutupSidebar()"></div>
+  
+  <script>
+    const sidebar = document.getElementById("mySidebar");
+    const overlay = document.getElementById("overlay");
+    const tombolProfil = document.getElementById("tombolProfil");
+
+    tombolProfil.addEventListener("click", function() {
+      sidebar.classList.add("buka");
+      overlay.classList.add("tampil");
+    });
+
+    function tutupSidebar() {
+      sidebar.classList.remove("buka");
+      overlay.classList.remove("tampil");
+    }
+  
+    window.onload = function() {
+      const namaAktif = localStorage.getItem("namaLogin");
+      const fotoAktif = localStorage.getItem("fotoLogin");
+      
+      if (namaAktif && fotoAktif) {
+        document.getElementById("namaSidebar").innerText = namaAktif;
+        document.getElementById("tombolProfil").src = fotoAktif;
+        document.getElementById("fotoSidebar").src = fotoAktif;
+      } else {
+        alert ("Anda belum login!");
+        window.location.href = "halamanLogin.html";
+      }
+    };
+  </script>
+</body>
+</html>

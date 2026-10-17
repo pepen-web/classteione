@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  <title>Beranda</title>
+  <style>
+  body {
+    font-family: chewy;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    height: 50px;
+    width: 100%;
+    background: pink;
+  }
+  .profil {
+    height: 35px;
+    width: 35px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-left: 15px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: -250px;
+    background-color: #fce4ec;
+    border-right: 2px solid black;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 20px;
+    font-family: chewy;
+  }
+  .sidebar.buka {
+    left: 0;
+  }
+  .sidebar-header {
+    padding: 10px 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    position: relative;
+  }
+
+  .profil-di-sidebar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 10px;
+  }
+  .sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+  }
+  .sidebar-menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    transition: 0.2s;
+  }
+  .sidebar-menu a:hover {
+    background-color: pink;
+  }
+  .overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.5);
+    display: none;
+  }
+  .overlay.tampil {
+    display: block;
+  }
+  .photo-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding: 0 15px;
+      flex-wrap: wrap;
+    }
+    .photo-card {
+      width: 100px;
+      height: 140px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 3px solid white;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+    .photo-card:hover {
+      transform: scale(1.05);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+    }
+    .photo-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 13px;
+      line-height: 1.2;
+      text-shadow: none;
+      transform: translateY(100%); 
+      transition: transform 0.3s ease;
+    }
+    .photo-card.active .photo-info {
+      transform: translateY(0);
+    }
+    hr {
+      height: 2px;
+      width: 380px;
+      border-radius: 8px;
+      background-color: white;
+    }
+    h4 {
+      text-align: center;
+    }
+    .h3 {
+      text-align: center;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="foto_default.jpg" class="profil" id="tombolProfil">
+  </header>
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-header">
+      <img src="foto_default.jpg" alt="Profil" class="profil-di-sidebar" id="fotoSidebar">
+      <h3 id="namaSidebar">Nama Anda</h3>
+      <a href="javascript:void(0)" class="closebtn" onclick="tutupSidebar()">&times;</a>
+    </div>
+    <div class="sidebar-menu">
+      <a href="beranda.html">Beranda</a>
+      <a href="album.html">Album</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="halamanLogin.html" style="color: red;">Keluar</a>
+    </div>
+  </div>
+  <div id="overlay" class="overlay" onclick="tutupSidebar()"></div>
+  <br>
+  <h3 class="h3">TEKNIK ELEKTRONIKA INDUSTRI</h3>
+  <h3 class="h3">SMK NEGERI 1 PANYINGKIRAN</h3>
+  
+  <div class="photo-container">            
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_1.jpg" alt="Guru 1"> <div class="photo-info">
+        Pak Egy<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_2.jpg" alt="Guru 2"> <div class="photo-info">
+        Pak Irfan<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_3.jpg" alt="Guru 3"> <div class="photo-info">
+        Pak Soleh<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_4.jpg" alt="Guru 4"> <div class="photo-info">
+        Pak Ade<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_5.jpg" alt="Guru 5"> <div class="photo-info">
+        Ibu Titi<br>25-04-2026
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div class="photo-container">
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="guru_6.jpg" alt="Wali Kelas"> <div class="photo-info">
+        Ibu Titi<br>05-05-2026
+      </div>
+    </div>
+  </div>
+  <h4>Wali Kelas</h4>
+  
+  <div class="photo-container">            
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_1.jpg" alt="Murid 1"> <div class="photo-info">
+        Abdurahman.S<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_2.jpg" alt="Murid 2"> <div class="photo-info">
+        Aditya.F<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_3.jpg" alt="Murid 3"> <div class="photo-info">
+        Afid.D<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_4.jpg" alt="Murid 4"> <div class="photo-info">
+        Alan.K<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="aldy.jpg" alt="Murid 5"> <div class="photo-info">
+        Aldy.S.R<br>25-04-2026
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_6.jpg" alt="Murid 6"> <div class="photo-info">
+        Arif.H<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_7.jpg" alt="Murid 7"> <div class="photo-info">
+        Bona.R<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_8.jpg" alt="Murid 8"> <div class="photo-info">
+        Dhody.S.L<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_9.jpg" alt="Murid 9"> <div class="photo-info">
+        Dicka.R<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="udin.jpg" alt="Murid 10"> <div class="photo-info">
+        Fachrudin<br>06-01-2009
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="fadli.jpg" alt="Murid 11"> <div class="photo-info">
+        Fadli.F<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_12.jpg" alt="Murid 12"> <div class="photo-info">
+        Hilman.M.H<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="idam.jpg" alt="Murid 13"> <div class="photo-info">
+        Idam.F.S<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_14.jpg" alt="Murid 14"> <div class="photo-info">
+        M.Adinurfandi.B<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_15.jpg" alt="Murid 15"> <div class="photo-info">
+        M.Ilham.R<br>25-04-2026
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_16.jpg" alt="Murid 16"> <div class="photo-info">
+        M.Dava.M<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_17.jpg" alt="Murid 17"> <div class="photo-info">
+        M.Fachri<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_18.jpg" alt="Murid 18"> <div class="photo-info">
+        M.Dzikri.I.M.F<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="rehan.jpg" alt="Murid 19"> <div class="photo-info">
+        M.Rehan.Y<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_20.jpg" alt="Murid 20"> <div class="photo-info">
+        Naim.C<br>25-04-2026
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_21.jpg" alt="Murid 21"> <div class="photo-info">
+        Padli.H<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_22.jpg" alt="Murid 22"> <div class="photo-info">
+        Rakha.A.P<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="pendra.jpg" alt="Murid 23"> <div class="photo-info">
+        Rasmita.N<br>20-11-2008
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_24.jpg" alt="Murid 24"> <div class="photo-info">
+        Rendy.K<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_25.jpg" alt="Murid 25"> <div class="photo-info">
+        Reza Setia.F.A<br>25-04-2026
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="salsa.jpg" alt="Murid 26"> <div class="photo-info">
+        Salsabila.R.P<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_27.jpg" alt="Murid 27"> <div class="photo-info">
+        Sandy.A.S<br>25-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_28.jpg" alt="Murid 28"> <div class="photo-info">
+        Senoaji.F<br>05-05-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_29.jpg" alt="Murid 29"> <div class="photo-info">
+        Syiffa.M.A.D<br>10-04-2026
+      </div>
+    </div>
+          
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_30.jpg" alt="Murid 30"> <div class="photo-info">
+        Trinanda.H<br>25-04-2026
+      </div>
+    </div>
+    
+    <div class="photo-card" onclick="toggleInfo(this)">
+      <img src="murid_31.jpg" alt="Murid 31"> <div class="photo-info">
+        Viki Rizky.A<br>25-04-2026
+      </div>
+    </div>
+  </div>
+  <script>
+    const sidebar = document.getElementById("mySidebar");
+    const overlay = document.getElementById("overlay");
+    const tombolProfil = document.getElementById("tombolProfil");
+
+    tombolProfil.addEventListener("click", function() {
+      sidebar.classList.add("buka");
+      overlay.classList.add("tampil");
+    });
+
+    function tutupSidebar() {
+      sidebar.classList.remove("buka");
+      overlay.classList.remove("tampil");
+    }
+    function toggleInfo(element) {
+      element.classList.toggle('active');
+    }
+    
+    window.onload = function() {
+      const namaAktif = localStorage.getItem("namaLogin");
+      const fotoAktif = localStorage.getItem("fotoLogin");
+      
+      if (namaAktif && fotoAktif) {
+        document.getElementById("namaSidebar").innerText = namaAktif;
+        document.getElementById("tombolProfil").src = fotoAktif;
+        document.getElementById("fotoSidebar").src = fotoAktif;
+      } else {
+        alert ("Anda belum login!");
+        window.location.href = "halamanLogin.html";
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  <title>Album</title>
+  
+  <style>
+  body {
+    font-family: chewy;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    height: 50px;
+    width: 100%;
+    background: pink;
+  }
+  hr {
+      height: 2px;
+      width: 380px;
+      border-radius: 8px;
+      background-color: white;
+  }
+  .profil {
+    height: 35px;
+    width: 35px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-left: 15px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: -250px;
+    background-color: #fce4ec;
+    border-right: 2px solid black;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 20px;
+    font-family: chewy;
+  }
+  .sidebar.buka {
+    left: 0;
+  }
+  .sidebar-header {
+    padding: 10px 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    position: relative;
+  }
+
+  .profil-di-sidebar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 10px;
+  }
+  .sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+  }
+  .sidebar-menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    transition: 0.2s;
+  }
+  .sidebar-menu a:hover {
+    background-color: pink;
+  }
+  .overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.5);
+    display: none;
+  }
+  .overlay.tampil {
+    display: block;
+  }
+  .video-vertikal { 
+    width: 300px;
+    height: 450px;
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+  }
+  .video-horizontal { 
+    width: 400px;
+    height: 250px;
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+  }
+  .media-vertikal { 
+    width: 130px; 
+    height: 190px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+  }
+  .media-horizontal { 
+    width: 190px; 
+    height: 130px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+  }
+  .glass-card { 
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="foto_default.jpg" class="profil" id="tombolProfil">
+  </header>
+  
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-header">
+      <img src="foto_default.jpg" alt="Profil" class="profil-di-sidebar" id="fotoSidebar">
+      <h3 id="namaSidebar">Nama Anda</h3>
+      <a href="javascript:void(0)" class="closebtn" onclick="tutupSidebar()">&times;</a>
+    </div>
+    
+    <div class="sidebar-menu">
+      <a href="beranda.html">Beranda</a>
+      <a href="album.html">Album</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="halamanLogin.html" style="color: red;">Keluar</a>
+    </div>
+  </div>
+  
+  <div id="overlay" class="overlay" onclick="tutupSidebar()"></div>
+  
+  <div class="glass-card">
+    <img src="foto random 1.jpg" class="media-vertikal">
+    <img src="foto bersama 1.jpg" class="media-vertikal">
+    <img src="foto random 10.jpg" class="media-vertikal">
+    <img src="foto random 11.jpg" class="media-vertikal">
+    <img src="foto random 12.jpg" class="media-vertikal">
+    <img src="foto random 14.jpg" class="media-vertikal">
+    <img src="foto random 15.jpg" class="media-vertikal">
+    <img src="foto random 18.jpg" class="media-vertikal">
+    <img src="foto random 21.jpg" class="media-vertikal">
+    <img src="foto random 22.jpg" class="media-vertikal">
+    <img src="foto random 24.jpg" class="media-vertikal">
+    <img src="foto random 25.jpg" class="media-vertikal">
+    <img src="foto random 26.jpg" class="media-vertikal">
+    <img src="foto random 27.jpg" class="media-vertikal">
+    <img src="foto random 28.jpg" class="media-vertikal">
+    <img src="foto random 3.jpg" class="media-vertikal">
+    <img src="foto random 30.jpg" class="media-vertikal">
+    <img src="foto random 31.jpg" class="media-vertikal">
+    <img src="foto random 32.jpg" class="media-vertikal">
+    <img src="foto random 33.jpg" class="media-vertikal">
+    <img src="foto random 37.jpg" class="media-vertikal">
+    <img src="foto random 39.jpg" class="media-vertikal">
+    <img src="foto random 4.jpg" class="media-vertikal">
+    <img src="foto random 40.jpg" class="media-vertikal">
+    <img src="foto random 41.jpg" class="media-vertikal">
+    <img src="foto random 42.jpg" class="media-vertikal">
+    <img src="foto random 43.jpg" class="media-vertikal">
+    <img src="foto random 5.jpg" class="media-vertikal">
+    <img src="foto random 6.jpg" class="media-vertikal">
+    <img src="foto random 7.jpg" class="media-vertikal">
+    <img src="foto random 8.jpg" class="media-vertikal">
+    <img src="foto random 9.jpg" class="media-vertikal">
+    <img src="foto random 2.jpg" class="media-vertikal"> 
+  </div>
+  <div class="glass-card">
+    <img src="foto bersama 2.jpg" class="media-horizontal">
+    <img src="foto random 13.jpg" class="media-horizontal">
+    <img src="foto random 16.jpg" class="media-horizontal">
+    <img src="foto random 17.jpg" class="media-horizontal">
+    <img src="foto random 19.jpg" class="media-horizontal">
+    <img src="foto random 20.jpg" class="media-horizontal">
+    <img src="foto random 23.jpg" class="media-horizontal">
+    <img src="foto random 29.jpg" class="media-horizontal">
+    <img src="foto random 34.jpg" class="media-horizontal">
+    <img src="foto random 35.jpg" class="media-horizontal">
+    <img src="foto random 36.jpg" class="media-horizontal">
+    <img src="foto random 38.jpg" class="media-horizontal">
+    <img src="foto random 44.jpg" class="media-horizontal">
+  </div>
+  
+  <br>
+  <hr>
+  <br>
+  
+  <div class="glass-card">
+    <video class="video-vertikal" controls>
+      <source src="video 1.mp4"/>
+    </video>
+    <video class="video-vertikal" controls>
+      <source src="video 2.mp4"/>
+    </video>
+    <video class="video-vertikal" controls>
+      <source src="video 3.mp4"/>
+    </video>
+    <video class="video-vertikal" controls>
+      <source src="video 4.mp4"/>
+    </video>
+    <video class="video-vertikal" controls>
+      <source src="video 5.mp4"/>
+    </video>
+    <video class="video-vertikal" controls>
+      <source src="video 6.mp4"/>
+    </video>
+  </div>
+  <div class="glass-card">
+    <video class="video-horizontal" controls>
+      <source src="video 7.mp4"/>
+    </video>
+  </div>
+  <script>
+    const sidebar = document.getElementById("mySidebar");
+    const overlay = document.getElementById("overlay");
+    const tombolProfil = document.getElementById("tombolProfil");
+
+    tombolProfil.addEventListener("click", function() {
+      sidebar.classList.add("buka");
+      overlay.classList.add("tampil");
+    });
+    function tutupSidebar() {
+      sidebar.classList.remove("buka");
+      overlay.classList.remove("tampil");
+    }
+    window.onload = function() {
+      const namaAktif = localStorage.getItem("namaLogin");
+      const fotoAktif = localStorage.getItem("fotoLogin"); 
+      
+      if (namaAktif && fotoAktif) {
+        document.getElementById("namaSidebar").innerText = namaAktif;
+        document.getElementById("tombolProfil").src = fotoAktif;
+        document.getElementById("fotoSidebar").src = fotoAktif;
+      } else {
+        alert ("Anda belum login!");
+        window.location.href = "halamanLogin.html";
+      }
+    };
+    
+    const semuaVideo = document.querySelectorAll("video");
+  
+    semuaVideo.forEach(function(video) {
+      video.addEventListener("play", function() {
+        semuaVideo.forEach(function(videoLain) {
+          if (videoLain !== video) {
+            videoLain.pause();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
